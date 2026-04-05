@@ -1,0 +1,200 @@
+/* ── Google Fonts: Roboto + JetBrains Mono ─────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Design tokens ──────────────────────────────────────── */
+:root {
+  /* Dark mode (default) */
+  --bg:       #050a12;
+  --surface:  #0a1220;
+  --surfaceH: #0f1c2e;
+  --bdr:      #1a2d45;
+  --accent:   #3b82f6;
+  --aGreen:   #10b981;
+  --tp:       #e8f0fe;
+  --ts:       #7a9cc0;
+  --tm:       #3d5a7a;
+}
+
+html:not(.dark) {
+  /* Light mode overrides */
+  --bg:       #f0f4f8;
+  --surface:  #ffffff;
+  --surfaceH: #e2e8f2;
+  --bdr:      #cbd5e1;
+  --accent:   #2563eb;
+  --aGreen:   #059669;
+  --tp:       #0f172a;
+  --ts:       #475569;
+  --tm:       #94a3b8;
+}
+
+/* ── Reset ──────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: var(--bg);
+  color: var(--tp);
+  /* Roboto for everything — bold headings, medium titles, regular body */
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.7;
+  letter-spacing: 0.01em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.35s ease, color 0.35s ease;
+  overflow-x: hidden;
+}
+
+/* ── Typography scale ───────────────────────────────────── */
+h1 {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+h2 {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+}
+h3 {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  line-height: 1.3;
+}
+p {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  line-height: 1.75;
+}
+.font-medium-label {
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+/* ── Selection ──────────────────────────────────────────── */
+::selection { background: rgba(59,130,246,0.25); color: var(--tp); }
+
+/* ── Scrollbar ──────────────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track  { background: var(--bg); }
+::-webkit-scrollbar-thumb  { background: var(--bdr); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+/* ── Utility classes ────────────────────────────────────── */
+@layer utilities {
+
+  /* Glassmorphism */
+  .glass {
+    background: rgba(10,18,32,0.55);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(26,45,69,0.8);
+    transition: background 0.35s ease, border-color 0.35s ease;
+  }
+  html:not(.dark) .glass {
+    background: rgba(255,255,255,0.82);
+    border-color: rgba(203,213,225,0.9);
+  }
+
+  /* Glow helpers */
+  .glow-blue  { box-shadow: 0 0 30px rgba(59,130,246,0.2),  0 0 2px rgba(59,130,246,0.5); }
+  .glow-green { box-shadow: 0 0 30px rgba(16,185,129,0.2),  0 0 2px rgba(16,185,129,0.5); }
+
+  /* Text gradients */
+  .text-gradient {
+    background: linear-gradient(135deg, var(--tp) 0%, var(--ts) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .text-gradient-blue {
+    background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 50%, #8b5cf6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Card border */
+  .border-glow {
+    border: 1px solid var(--bdr);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  html:not(.dark) .border-glow {
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.9), 0 1px 4px rgba(0,0,0,0.06);
+  }
+
+  /* Grid background — neon-style subtle lines */
+  .grid-bg {
+    background-image:
+      linear-gradient(rgba(59,130,246,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(59,130,246,0.06) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+  html:not(.dark) .grid-bg {
+    background-image:
+      linear-gradient(rgba(37,99,235,0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(37,99,235,0.08) 1px, transparent 1px);
+  }
+
+  /* ── Profile image neon glow ring ───────────────────────
+     Replaces the old conic-gradient border.
+     Uses a layered box-shadow for blue→green neon effect. */
+  .profile-neon-ring {
+    /* Multi-layer neon: inner sharp + outer soft bloom */
+    box-shadow:
+      0 0  0   2px rgba(59,130,246,0.9),    /* sharp blue inner ring  */
+      0 0  12px 4px rgba(59,130,246,0.55),   /* blue inner glow        */
+      0 0  28px 8px rgba(16,185,129,0.35),   /* green mid bloom        */
+      0 0  50px 16px rgba(59,130,246,0.18);  /* blue outer soft bloom  */
+    animation: neonPulse 3s ease-in-out infinite;
+  }
+
+  @keyframes neonPulse {
+    0%, 100% {
+      box-shadow:
+        0 0  0   2px rgba(59,130,246,0.9),
+        0 0  12px 4px rgba(59,130,246,0.55),
+        0 0  28px 8px rgba(16,185,129,0.35),
+        0 0  50px 16px rgba(59,130,246,0.18);
+    }
+    50% {
+      box-shadow:
+        0 0  0   2px rgba(16,185,129,0.9),
+        0 0  14px 5px rgba(16,185,129,0.6),
+        0 0  32px 10px rgba(59,130,246,0.4),
+        0 0  60px 20px rgba(16,185,129,0.2);
+    }
+  }
+
+  /* ── Neon background orbs (replaces plain rounded squares) */
+  .neon-orb-blue {
+    background: radial-gradient(ellipse at center,
+      rgba(59,130,246,0.18) 0%,
+      rgba(59,130,246,0.06) 40%,
+      transparent 70%);
+    filter: blur(2px);
+  }
+  .neon-orb-green {
+    background: radial-gradient(ellipse at center,
+      rgba(16,185,129,0.15) 0%,
+      rgba(16,185,129,0.05) 40%,
+      transparent 70%);
+    filter: blur(2px);
+  }
+  .neon-orb-purple {
+    background: radial-gradient(ellipse at center,
+      rgba(139,92,246,0.14) 0%,
+      rgba(139,92,246,0.04) 40%,
+      transparent 70%);
+    filter: blur(2px);
+  }
+}
