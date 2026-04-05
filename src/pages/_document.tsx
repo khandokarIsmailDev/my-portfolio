@@ -11,6 +11,9 @@ export default function Document() {
           href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=JetBrains+Mono:wght@400;500&display=swap"
           rel="stylesheet"
         />
+        {/* Favicon */}
+        <link rel="icon" href="/favi.png" type="image/png" />
+
       </Head>
       <body>
         <Main />
