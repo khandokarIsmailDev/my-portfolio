@@ -12,6 +12,17 @@ exports.id = "pages/_app";
 exports.ids = ["pages/_app"];
 exports.modules = {
 
+/***/ "./src/hooks/useVisitorTracking.ts":
+/*!*****************************************!*\
+  !*** ./src/hooks/useVisitorTracking.ts ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   useVisitorTracking: () => (/* binding */ useVisitorTracking)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"react\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! next/router */ \"./node_modules/next/router.js\");\n/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_1__);\n/**\n * useVisitorTracking\n *\n * Custom hook that fires one POST to /api/track-visit on mount.\n * Silently fails — never affects user experience.\n *\n * Usage: call it once inside _app.tsx or index.tsx\n */ \n\nfunction useVisitorTracking() {\n    const router = (0,next_router__WEBPACK_IMPORTED_MODULE_1__.useRouter)();\n    (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(()=>{\n        // Fire and forget — don't await, don't block render\n        fetch(\"/api/track-visit\", {\n            method: \"POST\",\n            headers: {\n                \"Content-Type\": \"application/json\"\n            },\n            body: JSON.stringify({\n                page: router.asPath\n            })\n        }).catch(()=>{\n        // Silently swallow any network errors\n        });\n    // Only runs once per page load (router.asPath as dep is fine for SPA nav too)\n    // eslint-disable-next-line react-hooks/exhaustive-deps\n    }, [\n        router.asPath\n    ]);\n}\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9zcmMvaG9va3MvdXNlVmlzaXRvclRyYWNraW5nLnRzIiwibWFwcGluZ3MiOiI7Ozs7Ozs7O0FBQUE7Ozs7Ozs7Q0FPQyxHQUNpQztBQUNNO0FBRWpDLFNBQVNFO0lBQ2QsTUFBTUMsU0FBU0Ysc0RBQVNBO0lBRXhCRCxnREFBU0EsQ0FBQztRQUNSLG9EQUFvRDtRQUNwREksTUFBTSxvQkFBb0I7WUFDeEJDLFFBQVM7WUFDVEMsU0FBUztnQkFBRSxnQkFBZ0I7WUFBbUI7WUFDOUNDLE1BQU1DLEtBQUtDLFNBQVMsQ0FBQztnQkFBRUMsTUFBTVAsT0FBT1EsTUFBTTtZQUFDO1FBQzdDLEdBQUdDLEtBQUssQ0FBQztRQUNQLHNDQUFzQztRQUN4QztJQUNGLDhFQUE4RTtJQUM5RSx1REFBdUQ7SUFDdkQsR0FBRztRQUFDVCxPQUFPUSxNQUFNO0tBQUM7QUFDcEIiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9raGFuZG9rYXItaXNtYWlsLXBvcnRmb2xpby8uL3NyYy9ob29rcy91c2VWaXNpdG9yVHJhY2tpbmcudHM/NjAyOCJdLCJzb3VyY2VzQ29udGVudCI6WyIvKipcbiAqIHVzZVZpc2l0b3JUcmFja2luZ1xuICpcbiAqIEN1c3RvbSBob29rIHRoYXQgZmlyZXMgb25lIFBPU1QgdG8gL2FwaS90cmFjay12aXNpdCBvbiBtb3VudC5cbiAqIFNpbGVudGx5IGZhaWxzIOKAlCBuZXZlciBhZmZlY3RzIHVzZXIgZXhwZXJpZW5jZS5cbiAqXG4gKiBVc2FnZTogY2FsbCBpdCBvbmNlIGluc2lkZSBfYXBwLnRzeCBvciBpbmRleC50c3hcbiAqL1xuaW1wb3J0IHsgdXNlRWZmZWN0IH0gZnJvbSBcInJlYWN0XCI7XG5pbXBvcnQgeyB1c2VSb3V0ZXIgfSBmcm9tIFwibmV4dC9yb3V0ZXJcIjtcblxuZXhwb3J0IGZ1bmN0aW9uIHVzZVZpc2l0b3JUcmFja2luZygpIHtcbiAgY29uc3Qgcm91dGVyID0gdXNlUm91dGVyKCk7XG5cbiAgdXNlRWZmZWN0KCgpID0+IHtcbiAgICAvLyBGaXJlIGFuZCBmb3JnZXQg4oCUIGRvbid0IGF3YWl0LCBkb24ndCBibG9jayByZW5kZXJcbiAgICBmZXRjaChcIi9hcGkvdHJhY2stdmlzaXRcIiwge1xuICAgICAgbWV0aG9kOiAgXCJQT1NUXCIsXG4gICAgICBoZWFkZXJzOiB7IFwiQ29udGVudC1UeXBlXCI6IFwiYXBwbGljYXRpb24vanNvblwiIH0sXG4gICAgICBib2R5OiBKU09OLnN0cmluZ2lmeSh7IHBhZ2U6IHJvdXRlci5hc1BhdGggfSksXG4gICAgfSkuY2F0Y2goKCkgPT4ge1xuICAgICAgLy8gU2lsZW50bHkgc3dhbGxvdyBhbnkgbmV0d29yayBlcnJvcnNcbiAgICB9KTtcbiAgLy8gT25seSBydW5zIG9uY2UgcGVyIHBhZ2UgbG9hZCAocm91dGVyLmFzUGF0aCBhcyBkZXAgaXMgZmluZSBmb3IgU1BBIG5hdiB0b28pXG4gIC8vIGVzbGludC1kaXNhYmxlLW5leHQtbGluZSByZWFjdC1ob29rcy9leGhhdXN0aXZlLWRlcHNcbiAgfSwgW3JvdXRlci5hc1BhdGhdKTtcbn1cbiJdLCJuYW1lcyI6WyJ1c2VFZmZlY3QiLCJ1c2VSb3V0ZXIiLCJ1c2VWaXNpdG9yVHJhY2tpbmciLCJyb3V0ZXIiLCJmZXRjaCIsIm1ldGhvZCIsImhlYWRlcnMiLCJib2R5IiwiSlNPTiIsInN0cmluZ2lmeSIsInBhZ2UiLCJhc1BhdGgiLCJjYXRjaCJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./src/hooks/useVisitorTracking.ts\n");
+
+/***/ }),
+
 /***/ "./src/lib/ThemeContext.tsx":
 /*!**********************************!*\
   !*** ./src/lib/ThemeContext.tsx ***!
@@ -30,7 +41,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ App)\n/* harmony export */ });\n/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-dev-runtime */ \"react/jsx-dev-runtime\");\n/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! next/head */ \"next/head\");\n/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_head__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _lib_ThemeContext__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/lib/ThemeContext */ \"./src/lib/ThemeContext.tsx\");\n/* harmony import */ var _styles_globals_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/styles/globals.css */ \"./src/styles/globals.css\");\n/* harmony import */ var _styles_globals_css__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_styles_globals_css__WEBPACK_IMPORTED_MODULE_3__);\n\n\n\n\nfunction App({ Component, pageProps }) {\n    return /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_lib_ThemeContext__WEBPACK_IMPORTED_MODULE_2__.ThemeProvider, {\n        children: [\n            /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)((next_head__WEBPACK_IMPORTED_MODULE_1___default()), {\n                children: [\n                    /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"title\", {\n                        children: \"Khandokar Ismail — Full Stack & DevOps Engineer\"\n                    }, void 0, false, {\n                        fileName: \"/Users/ismail/Documents/work_directory/portfolio/portfolio 3/src/pages/_app.tsx\",\n                        lineNumber: 10,\n                        columnNumber: 9\n                    }, this),\n                    /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"meta\", {\n                        name: \"description\",\n                        content: \"Full Stack Developer & DevOps Engineer building scalable systems with Docker, Kubernetes, AWS, and modern web technologies.\"\n                    }, void 0, false, {\n                        fileName: \"/Users/ismail/Documents/work_directory/portfolio/portfolio 3/src/pages/_app.tsx\",\n                        lineNumber: 11,\n                        columnNumber: 9\n                    }, this),\n                    /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"meta\", {\n                        name: \"viewport\",\n                        content: \"width=device-width, initial-scale=1\"\n                    }, void 0, false, {\n                        fileName: \"/Users/ismail/Documents/work_directory/portfolio/portfolio 3/src/pages/_app.tsx\",\n                        lineNumber: 12,\n                        columnNumber: 9\n                    }, this),\n                    /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"link\", {\n                        rel: \"icon\",\n                        href: \"/favicon.ico\"\n                    }, void 0, false, {\n                        fileName: \"/Users/ismail/Documents/work_directory/portfolio/portfolio 3/src/pages/_app.tsx\",\n                        lineNumber: 13,\n                        columnNumber: 9\n                    }, this)\n                ]\n            }, void 0, true, {\n                fileName: \"/Users/ismail/Documents/work_directory/portfolio/portfolio 3/src/pages/_app.tsx\",\n                lineNumber: 9,\n                columnNumber: 7\n            }, this),\n            /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(Component, {\n                ...pageProps\n            }, void 0, false, {\n                fileName: \"/Users/ismail/Documents/work_directory/portfolio/portfolio 3/src/pages/_app.tsx\",\n                lineNumber: 15,\n                columnNumber: 7\n            }, this)\n        ]\n    }, void 0, true, {\n        fileName: \"/Users/ismail/Documents/work_directory/portfolio/portfolio 3/src/pages/_app.tsx\",\n        lineNumber: 8,\n        columnNumber: 5\n    }, this);\n}\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9zcmMvcGFnZXMvX2FwcC50c3giLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7O0FBQzZCO0FBQ3NCO0FBQ3JCO0FBRWYsU0FBU0UsSUFBSSxFQUFFQyxTQUFTLEVBQUVDLFNBQVMsRUFBWTtJQUM1RCxxQkFDRSw4REFBQ0gsNERBQWFBOzswQkFDWiw4REFBQ0Qsa0RBQUlBOztrQ0FDSCw4REFBQ0s7a0NBQU07Ozs7OztrQ0FDUCw4REFBQ0M7d0JBQUtDLE1BQUs7d0JBQWNDLFNBQVE7Ozs7OztrQ0FDakMsOERBQUNGO3dCQUFLQyxNQUFLO3dCQUFXQyxTQUFROzs7Ozs7a0NBQzlCLDhEQUFDQzt3QkFBS0MsS0FBSTt3QkFBT0MsTUFBSzs7Ozs7Ozs7Ozs7OzBCQUV4Qiw4REFBQ1I7Z0JBQVcsR0FBR0MsU0FBUzs7Ozs7Ozs7Ozs7O0FBRzlCIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8va2hhbmRva2FyLWlzbWFpbC1wb3J0Zm9saW8vLi9zcmMvcGFnZXMvX2FwcC50c3g/ZjlkNiJdLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgdHlwZSB7IEFwcFByb3BzIH0gZnJvbSBcIm5leHQvYXBwXCI7XG5pbXBvcnQgSGVhZCBmcm9tIFwibmV4dC9oZWFkXCI7XG5pbXBvcnQgeyBUaGVtZVByb3ZpZGVyIH0gZnJvbSBcIkAvbGliL1RoZW1lQ29udGV4dFwiO1xuaW1wb3J0IFwiQC9zdHlsZXMvZ2xvYmFscy5jc3NcIjtcblxuZXhwb3J0IGRlZmF1bHQgZnVuY3Rpb24gQXBwKHsgQ29tcG9uZW50LCBwYWdlUHJvcHMgfTogQXBwUHJvcHMpIHtcbiAgcmV0dXJuIChcbiAgICA8VGhlbWVQcm92aWRlcj5cbiAgICAgIDxIZWFkPlxuICAgICAgICA8dGl0bGU+S2hhbmRva2FyIElzbWFpbCDigJQgRnVsbCBTdGFjayAmIERldk9wcyBFbmdpbmVlcjwvdGl0bGU+XG4gICAgICAgIDxtZXRhIG5hbWU9XCJkZXNjcmlwdGlvblwiIGNvbnRlbnQ9XCJGdWxsIFN0YWNrIERldmVsb3BlciAmIERldk9wcyBFbmdpbmVlciBidWlsZGluZyBzY2FsYWJsZSBzeXN0ZW1zIHdpdGggRG9ja2VyLCBLdWJlcm5ldGVzLCBBV1MsIGFuZCBtb2Rlcm4gd2ViIHRlY2hub2xvZ2llcy5cIiAvPlxuICAgICAgICA8bWV0YSBuYW1lPVwidmlld3BvcnRcIiBjb250ZW50PVwid2lkdGg9ZGV2aWNlLXdpZHRoLCBpbml0aWFsLXNjYWxlPTFcIiAvPlxuICAgICAgICA8bGluayByZWw9XCJpY29uXCIgaHJlZj1cIi9mYXZpY29uLmljb1wiIC8+XG4gICAgICA8L0hlYWQ+XG4gICAgICA8Q29tcG9uZW50IHsuLi5wYWdlUHJvcHN9IC8+XG4gICAgPC9UaGVtZVByb3ZpZGVyPlxuICApO1xufVxuIl0sIm5hbWVzIjpbIkhlYWQiLCJUaGVtZVByb3ZpZGVyIiwiQXBwIiwiQ29tcG9uZW50IiwicGFnZVByb3BzIiwidGl0bGUiLCJtZXRhIiwibmFtZSIsImNvbnRlbnQiLCJsaW5rIiwicmVsIiwiaHJlZiJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./src/pages/_app.tsx\n");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ App)\n/* harmony export */ });\n/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-dev-runtime */ \"react/jsx-dev-runtime\");\n/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! next/head */ \"next/head\");\n/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_head__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _lib_ThemeContext__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/lib/ThemeContext */ \"./src/lib/ThemeContext.tsx\");\n/* harmony import */ var _hooks_useVisitorTracking__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/hooks/useVisitorTracking */ \"./src/hooks/useVisitorTracking.ts\");\n/* harmony import */ var _styles_globals_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/styles/globals.css */ \"./src/styles/globals.css\");\n/* harmony import */ var _styles_globals_css__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_styles_globals_css__WEBPACK_IMPORTED_MODULE_4__);\n\n\n\n\n\n// Inner component so hook can access router context\nfunction AppInner({ Component, pageProps }) {\n    (0,_hooks_useVisitorTracking__WEBPACK_IMPORTED_MODULE_3__.useVisitorTracking)(); // 👈 fires silently on every page navigation\n    return /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(Component, {\n        ...pageProps\n    }, void 0, false, {\n        fileName: \"/Users/ismail/Documents/work_directory/portfolio/portfolio 3/src/pages/_app.tsx\",\n        lineNumber: 10,\n        columnNumber: 10\n    }, this);\n}\nfunction App(props) {\n    return /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_lib_ThemeContext__WEBPACK_IMPORTED_MODULE_2__.ThemeProvider, {\n        children: [\n            /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)((next_head__WEBPACK_IMPORTED_MODULE_1___default()), {\n                children: [\n                    /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"title\", {\n                        children: \"Khandokar Ismail — Full Stack & DevOps Engineer\"\n                    }, void 0, false, {\n                        fileName: \"/Users/ismail/Documents/work_directory/portfolio/portfolio 3/src/pages/_app.tsx\",\n                        lineNumber: 17,\n                        columnNumber: 9\n                    }, this),\n                    /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"meta\", {\n                        name: \"description\",\n                        content: \"Full Stack Developer & DevOps Engineer building scalable systems with Docker, Kubernetes, AWS, and modern web technologies.\"\n                    }, void 0, false, {\n                        fileName: \"/Users/ismail/Documents/work_directory/portfolio/portfolio 3/src/pages/_app.tsx\",\n                        lineNumber: 18,\n                        columnNumber: 9\n                    }, this),\n                    /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"meta\", {\n                        name: \"viewport\",\n                        content: \"width=device-width, initial-scale=1\"\n                    }, void 0, false, {\n                        fileName: \"/Users/ismail/Documents/work_directory/portfolio/portfolio 3/src/pages/_app.tsx\",\n                        lineNumber: 19,\n                        columnNumber: 9\n                    }, this),\n                    /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"link\", {\n                        rel: \"icon\",\n                        href: \"/favicon.ico\"\n                    }, void 0, false, {\n                        fileName: \"/Users/ismail/Documents/work_directory/portfolio/portfolio 3/src/pages/_app.tsx\",\n                        lineNumber: 20,\n                        columnNumber: 9\n                    }, this)\n                ]\n            }, void 0, true, {\n                fileName: \"/Users/ismail/Documents/work_directory/portfolio/portfolio 3/src/pages/_app.tsx\",\n                lineNumber: 16,\n                columnNumber: 7\n            }, this),\n            /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(AppInner, {\n                ...props\n            }, void 0, false, {\n                fileName: \"/Users/ismail/Documents/work_directory/portfolio/portfolio 3/src/pages/_app.tsx\",\n                lineNumber: 22,\n                columnNumber: 7\n            }, this)\n        ]\n    }, void 0, true, {\n        fileName: \"/Users/ismail/Documents/work_directory/portfolio/portfolio 3/src/pages/_app.tsx\",\n        lineNumber: 15,\n        columnNumber: 5\n    }, this);\n}\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9zcmMvcGFnZXMvX2FwcC50c3giLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7OztBQUM2QjtBQUNzQjtBQUNhO0FBQ2xDO0FBRTlCLG9EQUFvRDtBQUNwRCxTQUFTRyxTQUFTLEVBQUVDLFNBQVMsRUFBRUMsU0FBUyxFQUFZO0lBQ2xESCw2RUFBa0JBLElBQUksNkNBQTZDO0lBQ25FLHFCQUFPLDhEQUFDRTtRQUFXLEdBQUdDLFNBQVM7Ozs7OztBQUNqQztBQUVlLFNBQVNDLElBQUlDLEtBQWU7SUFDekMscUJBQ0UsOERBQUNOLDREQUFhQTs7MEJBQ1osOERBQUNELGtEQUFJQTs7a0NBQ0gsOERBQUNRO2tDQUFNOzs7Ozs7a0NBQ1AsOERBQUNDO3dCQUFLQyxNQUFLO3dCQUFjQyxTQUFROzs7Ozs7a0NBQ2pDLDhEQUFDRjt3QkFBS0MsTUFBSzt3QkFBV0MsU0FBUTs7Ozs7O2tDQUM5Qiw4REFBQ0M7d0JBQUtDLEtBQUk7d0JBQU9DLE1BQUs7Ozs7Ozs7Ozs7OzswQkFFeEIsOERBQUNYO2dCQUFVLEdBQUdJLEtBQUs7Ozs7Ozs7Ozs7OztBQUd6QiIsInNvdXJjZXMiOlsid2VicGFjazovL2toYW5kb2thci1pc21haWwtcG9ydGZvbGlvLy4vc3JjL3BhZ2VzL19hcHAudHN4P2Y5ZDYiXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHR5cGUgeyBBcHBQcm9wcyB9IGZyb20gXCJuZXh0L2FwcFwiO1xuaW1wb3J0IEhlYWQgZnJvbSBcIm5leHQvaGVhZFwiO1xuaW1wb3J0IHsgVGhlbWVQcm92aWRlciB9IGZyb20gXCJAL2xpYi9UaGVtZUNvbnRleHRcIjtcbmltcG9ydCB7IHVzZVZpc2l0b3JUcmFja2luZyB9IGZyb20gXCJAL2hvb2tzL3VzZVZpc2l0b3JUcmFja2luZ1wiO1xuaW1wb3J0IFwiQC9zdHlsZXMvZ2xvYmFscy5jc3NcIjtcblxuLy8gSW5uZXIgY29tcG9uZW50IHNvIGhvb2sgY2FuIGFjY2VzcyByb3V0ZXIgY29udGV4dFxuZnVuY3Rpb24gQXBwSW5uZXIoeyBDb21wb25lbnQsIHBhZ2VQcm9wcyB9OiBBcHBQcm9wcykge1xuICB1c2VWaXNpdG9yVHJhY2tpbmcoKTsgLy8g8J+RiCBmaXJlcyBzaWxlbnRseSBvbiBldmVyeSBwYWdlIG5hdmlnYXRpb25cbiAgcmV0dXJuIDxDb21wb25lbnQgey4uLnBhZ2VQcm9wc30gLz47XG59XG5cbmV4cG9ydCBkZWZhdWx0IGZ1bmN0aW9uIEFwcChwcm9wczogQXBwUHJvcHMpIHtcbiAgcmV0dXJuIChcbiAgICA8VGhlbWVQcm92aWRlcj5cbiAgICAgIDxIZWFkPlxuICAgICAgICA8dGl0bGU+S2hhbmRva2FyIElzbWFpbCDigJQgRnVsbCBTdGFjayAmIERldk9wcyBFbmdpbmVlcjwvdGl0bGU+XG4gICAgICAgIDxtZXRhIG5hbWU9XCJkZXNjcmlwdGlvblwiIGNvbnRlbnQ9XCJGdWxsIFN0YWNrIERldmVsb3BlciAmIERldk9wcyBFbmdpbmVlciBidWlsZGluZyBzY2FsYWJsZSBzeXN0ZW1zIHdpdGggRG9ja2VyLCBLdWJlcm5ldGVzLCBBV1MsIGFuZCBtb2Rlcm4gd2ViIHRlY2hub2xvZ2llcy5cIiAvPlxuICAgICAgICA8bWV0YSBuYW1lPVwidmlld3BvcnRcIiBjb250ZW50PVwid2lkdGg9ZGV2aWNlLXdpZHRoLCBpbml0aWFsLXNjYWxlPTFcIiAvPlxuICAgICAgICA8bGluayByZWw9XCJpY29uXCIgaHJlZj1cIi9mYXZpY29uLmljb1wiIC8+XG4gICAgICA8L0hlYWQ+XG4gICAgICA8QXBwSW5uZXIgey4uLnByb3BzfSAvPlxuICAgIDwvVGhlbWVQcm92aWRlcj5cbiAgKTtcbn1cbiJdLCJuYW1lcyI6WyJIZWFkIiwiVGhlbWVQcm92aWRlciIsInVzZVZpc2l0b3JUcmFja2luZyIsIkFwcElubmVyIiwiQ29tcG9uZW50IiwicGFnZVByb3BzIiwiQXBwIiwicHJvcHMiLCJ0aXRsZSIsIm1ldGEiLCJuYW1lIiwiY29udGVudCIsImxpbmsiLCJyZWwiLCJocmVmIl0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./src/pages/_app.tsx\n");
 
 /***/ }),
 
@@ -41,6 +52,17 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /***/ (() => {
 
 
+
+/***/ }),
+
+/***/ "next/dist/compiled/next-server/pages.runtime.dev.js":
+/*!**********************************************************************!*\
+  !*** external "next/dist/compiled/next-server/pages.runtime.dev.js" ***!
+  \**********************************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("next/dist/compiled/next-server/pages.runtime.dev.js");
 
 /***/ }),
 
@@ -66,6 +88,17 @@ module.exports = require("react");
 
 /***/ }),
 
+/***/ "react-dom":
+/*!****************************!*\
+  !*** external "react-dom" ***!
+  \****************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("react-dom");
+
+/***/ }),
+
 /***/ "react/jsx-dev-runtime":
 /*!****************************************!*\
   !*** external "react/jsx-dev-runtime" ***!
@@ -74,6 +107,50 @@ module.exports = require("react");
 
 "use strict";
 module.exports = require("react/jsx-dev-runtime");
+
+/***/ }),
+
+/***/ "react/jsx-runtime":
+/*!************************************!*\
+  !*** external "react/jsx-runtime" ***!
+  \************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("react/jsx-runtime");
+
+/***/ }),
+
+/***/ "fs":
+/*!*********************!*\
+  !*** external "fs" ***!
+  \*********************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("fs");
+
+/***/ }),
+
+/***/ "stream":
+/*!*************************!*\
+  !*** external "stream" ***!
+  \*************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("stream");
+
+/***/ }),
+
+/***/ "zlib":
+/*!***********************!*\
+  !*** external "zlib" ***!
+  \***********************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("zlib");
 
 /***/ })
 
@@ -84,7 +161,7 @@ module.exports = require("react/jsx-dev-runtime");
 var __webpack_require__ = require("../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = (__webpack_exec__("./src/pages/_app.tsx"));
+var __webpack_exports__ = __webpack_require__.X(0, ["vendor-chunks/next","vendor-chunks/@swc"], () => (__webpack_exec__("./src/pages/_app.tsx")));
 module.exports = __webpack_exports__;
 
 })();
