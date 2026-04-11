@@ -1,8 +1,10 @@
 {
-  "crons": [
+  "headers": [
     {
-      "path": "/api/send-daily-digest",
-      "schedule": "0 15 * * *"
+      "source": "/api/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "no-store" }
+      ]
     }
   ]
 }

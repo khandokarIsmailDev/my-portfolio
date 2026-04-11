@@ -1,0 +1,52 @@
+# ─────────────────────────────────────────────────────────────
+# Daily Portfolio Digest — GitHub Actions Cron
+#
+# Runs every day at 9:00 PM Bangladesh time (15:00 UTC)
+# Calls your Vercel API endpoint to trigger the email digest.
+#
+# Why GitHub Actions instead of Vercel Cron?
+#   Vercel free plan only runs crons once. GitHub Actions is
+#   fully free and runs reliably on schedule forever.
+#
+# Setup (one time):
+#   GitHub repo → Settings → Secrets and variables → Actions
+#   Add these two secrets:
+#     VERCEL_APP_URL  →  https://your-portfolio.vercel.app
+#     CRON_SECRET     →  same value as your Vercel env variable
+# ─────────────────────────────────────────────────────────────
+
+name: Daily Visitor Digest
+
+on:
+  schedule:
+    # Every day at 15:00 UTC = 9:00 PM Bangladesh (UTC+6)
+    - cron: "0 15 * * *"
+
+  # Allow manual trigger from GitHub UI (for testing)
+  workflow_dispatch:
+
+jobs:
+  send-digest:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Trigger daily digest API
+        run: |
+          echo "Triggering digest for $(date -u '+%Y-%m-%d %H:%M UTC')"
+
+          RESPONSE=$(curl -s -o /tmp/response.json -w "%{http_code}" \
+            -X GET \
+            -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}" \
+            "${{ secrets.VERCEL_APP_URL }}/api/send-daily-digest")
+
+          echo "HTTP Status: $RESPONSE"
+          echo "Response body:"
+          cat /tmp/response.json
+
+          # Fail the workflow if the API returned non-200
+          if [ "$RESPONSE" != "200" ]; then
+            echo "❌ API call failed with status $RESPONSE"
+            exit 1
+          fi
+
+          echo "✅ Daily digest sent successfully"
