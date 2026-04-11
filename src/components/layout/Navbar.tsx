@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Terminal, Moon, Sun } from "lucide-react";
 import { useTheme } from "@/lib/ThemeContext";
+import { useRouter, usePathname } from "next/navigation";
 
 const links = [
   { label: "About",      href: "#about"      },
@@ -16,6 +17,8 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen]         = useState(false);
   const { theme, toggle }       = useTheme();
+  const router                  = useRouter();
+  const pathname                = usePathname();
 
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 40);
@@ -23,9 +26,38 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", fn);
   }, []);
 
+  // অন্য page থেকে home এ redirect হওয়ার পর scroll করবে
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash && pathname === "/") {
+      // ছোট delay দিতে হবে যাতে page fully render হয়
+      setTimeout(() => {
+        document.querySelector(hash)?.scrollIntoView({ behavior: "smooth" });
+        // URL থেকে hash সরিয়ে দাও (optional, clean URL এর জন্য)
+        history.replaceState(null, "", "/");
+      }, 100);
+    }
+  }, [pathname]);
+
   const go = (href: string) => {
     setOpen(false);
-    document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
+
+    if (pathname === "/") {
+      // Same page এ আছি — সরাসরি scroll
+      document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
+    } else {
+      // অন্য page এ আছি — home এ নিয়ে যাও hash সহ
+      router.push(`/${href}`);
+    }
+  };
+
+  const goHome = () => {
+    setOpen(false);
+    if (pathname === "/") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      router.push("/");
+    }
   };
 
   return (
@@ -40,7 +72,7 @@ export default function Navbar() {
       >
         <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
           {/* Logo */}
-          <motion.a href="#hero" onClick={(e) => { e.preventDefault(); go("#hero"); }}
+          <motion.button onClick={goHome}
             className="flex items-center gap-2 group" whileHover={{ scale: 1.02 }}>
             <div className="w-8 h-8 rounded-lg bg-accent/10 border border-accent/30 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
               <Terminal size={14} className="text-accent" />
@@ -48,7 +80,7 @@ export default function Navbar() {
             <span className="font-sans font-bold text-sm text-[var(--tp)] tracking-wide">
               KI<span className="text-accent">.</span>dev
             </span>
-          </motion.a>
+          </motion.button>
 
           {/* Desktop */}
           <div className="hidden md:flex items-center gap-1">
